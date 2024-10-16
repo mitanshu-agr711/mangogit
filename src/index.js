@@ -4,25 +4,24 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import connectDB from './db/connect.db.js';
-// import { router } from './routes.js';
 
 const app = express();
-
 
 app.use(cors());
 
 const port = process.env.PORT||8000;
+// console.log(`process.env.PORT`, process.env.PORT);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-connectDB();
 
 
 app.get('/', (req, res) => {
   res.send('Assignment.');
 });
 
+
+connectDB();
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
