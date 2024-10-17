@@ -60,8 +60,19 @@ if ([book_Name, authore_Name, condition].some((field) => !field?.trim()) || year
   }
 };
 
+const getComicBook = async (req, res) => {
+  try {
+    const comicBook = await Comic.findById(req.params.id);
+    if (!comicBook) return res.status(404).json({ message: 'Comic book not found' });
+    res.json(comicBook);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const comicBookController = {
   createComicBook,
   getComicBooks,
+  getComicBook,
 
 };
