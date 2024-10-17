@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import connectDB from './db/connect.db.js';
+import router from './routes/comic.routes.js';
 
 const app = express();
 
@@ -15,13 +16,14 @@ const port = process.env.PORT||8000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+connectDB();
+
+app.use('/comic', router);
 
 app.get('/', (req, res) => {
   res.send('Assignment.');
 });
 
-
-connectDB();
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

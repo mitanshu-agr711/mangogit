@@ -1,10 +1,12 @@
-import { Comic } from "../model/comic.model";
+import { Comic } from "../model/comic.model.js";
 
 const createComic = async (req, res) => {
     const { Book_Name, Authore_Name, Year, Price, Discount, Condition, Description } = req.body;
-    if ([Book_Name, Authore_Name, Year, Price, Discount, Condition].some((field) => !field?.trim())) {
-        return res.status(400).json({ error: "All information is required" });
-      }
+    
+    if ([Book_Name, Authore_Name, Condition].some((field) => !field?.trim()) || !Year || !Price || !Discount) {
+      return res.status(400).json({ error: "All required information is needed" });
+    }
+    
      
       const newComic=await Comic.create({
         Book_Name,
