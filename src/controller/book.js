@@ -83,10 +83,20 @@ const updateComicBook = async (req, res) => {
   }
 };
 
+const deleteComicBook = async (req, res) => {
+  try {
+    const comicBook = await Comic.findByIdAndDelete(req.params.id);
+    if (!comicBook) return res.status(404).json({ message: 'Comic book not found' });
+    res.json({ message: 'Comic book deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const comicBookController = {
   createComicBook,
   getComicBooks,
   getComicBook,
   updateComicBook,
-
+  deleteComicBook,
 };
