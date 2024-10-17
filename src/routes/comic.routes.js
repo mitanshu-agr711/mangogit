@@ -1,15 +1,10 @@
 import express from 'express';
-
 const router = express.Router();
 
-import { createComic } from '../controller/book.js';
+import { comicBookController } from '../controller/book.js';
 
-try {
-    
-    router.post('/create', createComic);
-} catch (error) {
-    console.log(`router error`, error);
-    
-}
+router.post('/create', comicBookController.createComicBook);
+router.get('/get', comicBookController.getComicBooks);
+
 
 export default router;

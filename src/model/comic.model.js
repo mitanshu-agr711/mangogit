@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const comicSchema = new mongoose.Schema({
-  Book_Name: {
+  book_Name: {
     type: String,
     required: true,
     validate: {
@@ -9,7 +10,8 @@ const comicSchema = new mongoose.Schema({
       message: 'Book name must only contain letters, numbers, spaces, hyphens, apostrophes, periods, and commas.',
     },
   },
-  Authore_Name: {
+
+  authore_Name: {
     type: String,
     required: true,
     validate: {
@@ -17,7 +19,8 @@ const comicSchema = new mongoose.Schema({
       message: 'Author name must only contain letters, numbers, spaces, hyphens, apostrophes, periods, and commas.',
     },
   },
-  Year: {
+
+  yearOfPublication: {
     type: Number,
     required: true,
     validate: {
@@ -25,26 +28,37 @@ const comicSchema = new mongoose.Schema({
       message: 'Year must be a valid integer.',
     },
   },
-  Price: {
+
+  price: {
     type: Number,
     required: true,
   },
-  Discount: {
+
+  discount: { 
     type: Number,
-    required: true,
+     default: 0 
+    },
+
+  numberOfPages: 
+  { type: Number, 
+    required: true 
   },
-  Condition: {
+
+  condition: {
     type: String,
     required: true,
     enum: ['New', 'Old', 'Used'],
   },
-  Description: {
+
+  description: {
     type: String,
     validate: {
       validator: value => !value || /^[a-zA-Z0-9\s\-\'.,]+$/.test(value),
       message: 'Description must only contain letters, numbers, spaces, hyphens, apostrophes, periods, and commas.',
     },
   },
-});
+},
+{ timestamps: true });
+comicSchema.plugin(mongoosePaginate);
 
 export const Comic = mongoose.model("Comic", comicSchema);
