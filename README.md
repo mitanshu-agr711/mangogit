@@ -11,6 +11,18 @@ This repository contains the backend implementation for a React-based e-commerce
 - **Version Control**: GitHub
 - **API Testing**: Postman
 
+###Steps to Use Postman for API Requests:
+.Open Postman: by this link https://gold-firefly-554971.postman.co/workspace/My-Workspace~8764f4a6-5df5-46b4-86b6-2316c61b8ea9/collection/31008307-e49415d6-1e45-4201-9d1b-cb1e70abe43e?action=share&creator=31008307
+
+Launch Postman on your system.
+..Create a New Request:
+
+Click on the "+" button or New > HTTP Request to create a new request.
+Set the Request Type and URL:
+
+In the dropdown next to the URL input, select the HTTP method (GET, POST, PUT, or DELETE).
+Enter your API endpoint (for example: http://localhost:3000/comics/).
+
 ## Features
 
 ### A. Comic Book Management API
