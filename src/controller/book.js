@@ -70,9 +70,23 @@ const getComicBook = async (req, res) => {
   }
 };
 
+
+
+const updateComicBook = async (req, res) => {
+  try {
+    const comicBook = await Comic.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    console.log(comicBook);
+    if (!comicBook) return res.status(404).json({ message: 'Comic book not found' });
+    res.json(comicBook);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export const comicBookController = {
   createComicBook,
   getComicBooks,
   getComicBook,
+  updateComicBook,
 
 };

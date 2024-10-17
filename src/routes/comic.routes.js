@@ -6,5 +6,6 @@ import { comicBookController } from '../controller/book.js';
 router.post('/create', comicBookController.createComicBook);
 router.get('/get', comicBookController.getComicBooks);
 router.get('/:id', comicBookController.getComicBook);
+router.put('/:id', comicBookController.updateComicBook);
 
 export default router;
